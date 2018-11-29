@@ -43,7 +43,7 @@ $(document).ready(function() {
                 }
                 ,1000);
 
-                if (response != '' && response != '401') {
+                if (response != '' && response != '401' && response != 'dberror') {
 
                     $('div.receiver').toggleClass("greenreceiver");
                     $('.receiver').html('<p>Уважаемый(-ая) '+ response + ' , Вы авторизованы и перенаправляетесь на Вашу страницу!</p>');
@@ -59,6 +59,17 @@ $(document).ready(function() {
                         document.location.href = "admin.php";
                     }, 4000);
                    
+                } else if (response == 'dberror') {
+
+                    $('div.receiver').toggleClass("redreceiver");
+                    $('.receiver').html('Ошибка на сервере. Повторите вход позже!');
+
+                    setTimeout(function() {
+                        $('.receiver').animate({top:'-250px'},1000);
+                            setTimeout(function() {
+                                $('div.receiver').removeClass("redreceiver");
+                            }, 1000);
+                    }, 3000);
 
                 } else if (response == '401') {
 
@@ -71,6 +82,7 @@ $(document).ready(function() {
                                 $('div.receiver').removeClass("redreceiver");
                             }, 1000);
                     }, 3000);
+
 
                 } else {
                     $('div.receiver').toggleClass("redreceiver");

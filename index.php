@@ -69,7 +69,7 @@ if (!isset($_SESSION['login'])) {
                                 </tr>
                             </tbody>';
                     ?>
-                    </table>;
+                    </table>
                 </div>
             </div>
         </div>
